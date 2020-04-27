@@ -1,3 +1,5 @@
+#Define the WIN Combinations
+
 WIN_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -8,6 +10,7 @@ WIN_COMBINATIONS = [
   [0, 4, 8],
   [6, 4, 2]
 ]
+#Display Board Information
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -17,13 +20,19 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
+#Input to index, so that the user input can be converted to an index represented on the board
+
 def input_to_index(user_input)
   user_input.to_i - 1
 end
 
+#Define movements on the board
+
 def move(board, index, current_player)
   board[index] = current_player
 end
+
+#Ensure position inputs are valid
 
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
@@ -32,6 +41,8 @@ end
 def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
 end
+
+#Defining the turns for each play
 
 def turn_count(board)
   turn = 0
@@ -66,6 +77,8 @@ def turn(board)
     turn(board)
   end
 end
+
+#Define the win after each play
 
 def won?(board)
   WIN_COMBINATIONS.each {|win_combo|
